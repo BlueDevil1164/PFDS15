@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
+<head th:insert="layout::header">
+    <meta charset="UTF-8">
+    <title>Detalle de Marca</title>
+</head>
+<body>
+<nav th:insert="layout::nav"></nav>
+<div class="container mt-5">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h2 th:text="${marca.nombre}" class="card-title">Nombre de la Marca</h2>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Detalles de la Marca:</h6>
+            <p class="card-text">
+                <strong>ID Marca: </strong><span th:text="${marca.id}"></span><br>
+                <strong>Nombre: </strong><span th:text="${marca.nombre}"></span><br>
+                <strong>Rate: </strong><span th:text="${marca.rate}"></span><br>
+                <strong>Electrónico Matricula: </strong><span th:text="${marca.electronicoMatricula}"></span><br>
+            </p>
+            <a href="/front/marcas" class="btn btn-primary">Ir a todas las marcas</a>
+        </div>
+    </div>
+</div>
+<div th:insert="layout::footer"></div>
+</body>
+</html>

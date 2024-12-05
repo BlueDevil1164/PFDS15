@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
+<head th:insert="layout::header">
+    <meta charset="UTF-8">
+    <title>Detalle de Proveedor</title>
+</head>
+<body>
+<nav th:insert="layout::nav"></nav>
+<div class="container mt-5">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h2 th:text="${proveedor.proveedor}" class="card-title">Nombre del Proveedor</h2>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Detalles del Proveedor:</h6>
+            <p class="card-text">
+                <strong>ID Proveedor: </strong><span th:text="${proveedor.id}"></span><br>
+                <strong>Nombre: </strong><span th:text="${proveedor.proveedor}"></span><br>
+                <strong>Electrónicos Asociados: </strong>
+            <ul>
+                <li th:each="electronic : ${proveedor.electronicos}" th:text="${electronic}"></li>
+            </ul>
+            </p>
+            <a href="/front/proveedores" class="btn btn-primary">Ir a todos los proveedores</a>
+        </div>
+    </div>
+</div>
+<div th:insert="layout::footer"></div>
+</body>
+</html>

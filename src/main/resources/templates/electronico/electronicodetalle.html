@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="layout::header">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Electrónico</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<nav th:insert="layout::nav"></nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 th:text="${electronico.nombre} + ' (' + ${electronico.codigo} + ')'"></h2>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-3 text-muted">Detalle del Electrónico</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Matrícula:</strong>
+                            <span th:text="${electronico.matricula}"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Fecha de Facturación:</strong>
+                            <span th:text="${electronico.ffac}"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Precio:</strong>
+                            <span th:text="${#numbers.formatDecimal(electronico.precio, 2)}"></span> MXN
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Categoría:</strong>
+                            <span th:text="${electronico.categoria.nombre}"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Marca:</strong>
+                            <span th:text="${electronico.marca.nombre}"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Proveedor:</strong>
+                            <span th:text="${electronico.proveedor.nombre}"></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="/front/electronicos" class="btn btn-secondary me-2">Volver a la Lista</a>
+                    <a href="/front/electronicos/editar/${electronico.matricula}" class="btn btn-primary">Editar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <p class="mb-0">&copy; 2024 Electrónicos UNAM. Todos los derechos reservados.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
