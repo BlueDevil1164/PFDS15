@@ -8,88 +8,100 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+<!-- Navegación -->
 <nav th:insert="layout::nav"></nav>
 
+<!-- Contenedor Principal -->
 <div class="container mt-5">
     <!-- Mensaje de retroalimentación -->
     <div id="mensaje" class="alert d-none" role="alert"></div>
 
-    <h2 class="text-primary mb-4">Editar Electrónico</h2>
+    <!-- Título -->
+    <div class="text-center mb-5">
+        <h2 class="text-primary fw-bold">Editar Electrónico</h2>
+        <p class="text-muted">Actualiza los datos del electrónico en el formulario a continuación.</p>
+    </div>
 
-    <form th:action="@{/front/electronicos/editar}"
-          th:object="${electronico}" method="PUT"
-          class="row g-3">
+    <!-- Formulario -->
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <form th:action="@{/front/electronicos/editar}"
+                  th:object="${electronico}" method="PUT"
+                  class="row g-4">
+                <!-- Matrícula -->
+                <div class="col-md-6">
+                    <label for="matricula" class="form-label fw-bold">Matrícula</label>
+                    <input id="matricula" type="text" th:field="*{matricula}" class="form-control" readonly>
+                </div>
 
-        <!-- Matrícula -->
-        <div class="col-md-6">
-            <label for="matricula" class="form-label">Matrícula</label>
-            <input id="matricula" type="text" th:field="*{matricula}" class="form-control" readonly>
+                <!-- Nombre -->
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label fw-bold">Nombre</label>
+                    <input id="nombre" type="text" th:field="*{nombre}" class="form-control" placeholder="Ingresa el nombre">
+                </div>
+
+                <!-- Código de Barras -->
+                <div class="col-md-6">
+                    <label for="codigo" class="form-label fw-bold">Código de Barras</label>
+                    <input id="codigo" type="text" th:field="*{codigo}" class="form-control" placeholder="Ingresa el código de barras">
+                </div>
+
+                <!-- Fecha de Facturación -->
+                <div class="col-md-6">
+                    <label for="ffac" class="form-label fw-bold">Fecha de Facturación</label>
+                    <input id="ffac" type="date" th:field="*{ffac}" class="form-control">
+                </div>
+
+                <!-- Precio -->
+                <div class="col-md-6">
+                    <label for="precio" class="form-label fw-bold">Precio</label>
+                    <input id="precio" type="number" step="0.01" th:field="*{precio}" class="form-control" placeholder="Ingresa el precio">
+                </div>
+
+                <!-- Categoría -->
+                <div class="col-md-6">
+                    <label for="categoria" class="form-label fw-bold">Categoría</label>
+                    <select id="categoria" th:field="*{categoria}" class="form-select">
+                        <option value="" disabled selected>Seleccionar...</option>
+                        <option th:each="categoria : ${categorias}" th:value="${categoria.categoria}" th:text="${categoria.categoria}"></option>
+                    </select>
+                </div>
+
+                <!-- Marca -->
+                <div class="col-md-6">
+                    <label for="marca" class="form-label fw-bold">Marca</label>
+                    <select id="marca" th:field="*{marca}" class="form-select">
+                        <option value="" disabled selected>Seleccionar...</option>
+                        <option th:each="marca : ${marcas}" th:value="${marca.nombre}" th:text="${marca.nombre}"></option>
+                    </select>
+                </div>
+
+                <!-- Proveedor -->
+                <div class="col-md-6">
+                    <label for="proveedor" class="form-label fw-bold">Proveedor</label>
+                    <select id="proveedor" th:field="*{proveedor}" class="form-select">
+                        <option value="" disabled selected>Seleccionar...</option>
+                        <option th:each="proveedor : ${proveedores}" th:value="${proveedor.proveedor}" th:text="${proveedor.proveedor}"></option>
+                    </select>
+                </div>
+
+                <!-- Botón Guardar -->
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary w-100 fw-bold" onclick="enviarFormulario()">
+                        <i class="bi bi-save"></i> Guardar Cambios
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <!-- Nombre -->
-        <div class="col-md-6">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input id="nombre" type="text" th:field="*{nombre}" class="form-control">
-        </div>
-
-        <!-- Código de Barras -->
-        <div class="col-md-6">
-            <label for="codigo" class="form-label">Código de Barras</label>
-            <input id="codigo" type="text" th:field="*{codigo}" class="form-control">
-        </div>
-
-        <!-- Fecha de Facturación -->
-        <div class="col-md-6">
-            <label for="ffac" class="form-label">Fecha de Facturación</label>
-            <input id="ffac" type="date" th:field="*{ffac}" class="form-control">
-        </div>
-
-        <!-- Precio -->
-        <div class="col-md-6">
-            <label for="precio" class="form-label">Precio</label>
-            <input id="precio" type="number" step="0.01" th:field="*{precio}" class="form-control">
-        </div>
-
-        <!-- Categoría -->
-        <div class="col-md-6">
-            <label for="categoria" class="form-label">Categoría</label>
-            <select id="categoria" th:field="*{categoria}" class="form-select">
-                <option value="">Seleccionar...</option>
-                <option th:each="categoria : ${categorias}" th:value="${categoria.categoria}" th:text="${categoria.categoria}"></option>
-            </select>
-        </div>
-
-        <!-- Marca -->
-        <div class="col-md-6">
-            <label for="marca" class="form-label">Marca</label>
-            <select id="marca" th:field="*{marca}" class="form-select">
-                <option value="">Seleccionar...</option>
-                <option th:each="marca : ${marcas}" th:value="${marca.nombre}" th:text="${marca.nombre}"></option>
-            </select>
-        </div>
-
-        <!-- Proveedor -->
-        <div class="col-md-6">
-            <label for="proveedor" class="form-label">Proveedor</label>
-            <select id="proveedor" th:field="*{proveedor}" class="form-select">
-                <option value="">Seleccionar...</option>
-                <option th:each="proveedor : ${proveedores}" th:value="${proveedor.proveedor}" th:text="${proveedor.proveedor}"></option>
-            </select>
-        </div>
-
-        <!-- Botón Guardar -->
-        <div class="col-12 mt-4">
-            <button type="button" class="btn btn-primary w-100" onclick="enviarFormulario()">
-                Guardar Cambios
-            </button>
-        </div>
-    </form>
+    </div>
 </div>
 
+<!-- Footer -->
 <footer class="bg-dark text-white text-center py-3 mt-5">
     <p class="mb-0">&copy; 2024 Electrónicos UNAM. Todos los derechos reservados.</p>
 </footer>
 
+<!-- Scripts -->
 <script>
     function enviarFormulario() {
         const formData = {
@@ -105,9 +117,7 @@
 
         fetch('/front/electronicos/editar', {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         })
         .then(response => {
