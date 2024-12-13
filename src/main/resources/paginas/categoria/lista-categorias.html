@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{plantillas/plantilla :: head}"></head>
+<body>
+<header th:replace="~{plantillas/plantilla :: header}"></header>
+<main class="container text-center opacity-75 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <h1 th:text="${contenido}">Listado de Compradores</h1>
+
+    <!-- Mensaje de éxito o error -->
+    <div th:if="${success}" class="alert alert-success" role="alert">
+        <p th:text="${success}"></p>
+    </div>
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <p th:text="${error}"></p>
+    </div>
+
+    <!-- Tabla de compradores -->
+    <table th:if="${compradores.hasContent()}" class="table table-striped table-hover table-sm">
+        <thead class="table-dark table-bordered">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Género</th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comprador : ${compradores.content}"> <!-- Asegúrate de usar content si es una paginación -->
+            <td th:text="${comprador.id}"></td>
+            <td th:text="${comprador.nombre}"></td>
+            <td th:text="${comprador.apellidos}"></td>
+            <td th:text="${comprador.edad}"></td>
+            <td th:text="${comprador.genero}"></td>
+            <td>
+                <a th:href="@{/comprador/modificar-comprador/{id}(id=${comprador.id})}"
+                   class="btn btn-success">Modificar</a>
+                <a th:href="@{/comprador/eliminar-comprador/{id}(id=${comprador.id})}"
+                   class="btn btn-danger"
+                   onclick="return confirm('¿Estás seguro de que deseas eliminar este comprador?');">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Mensaje si no hay contenido -->
+    <div th:if="${!compradores.hasContent()}" class="alert alert-warning" role="alert">
+        <p>No hay compradores disponibles.</p>
+    </div>
+
+    <!-- Paginador -->
+    <nav th:replace="~{plantillas/pag-nav::paginador}"></nav>
+</main>
+<footer th:replace="~{plantillas/plantilla :: footer}"></footer>
+</body>
+</html>

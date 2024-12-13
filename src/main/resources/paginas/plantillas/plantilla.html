@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Spring</title>
+
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/jquery-ui.min.css}" rel="stylesheet">
+    <link th:href="@{/tema/miestilo.css}" rel="stylesheet">
+</head>
+<body>
+<header th:fragment="header">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-lg-2 navbar bg-dark">
+                <a class="navbar navbar-brand" style="color:white" th:href="@{/}">Spring Web MVC</a>
+                <a class="btn btn-outline-primary" th:href="@{/(lang=es_MX)}">es</a>
+                <!-- <a class="btn btn-outline-primary" th:href="@{/(lang=en_US)}">en</a> -->
+            </div>
+            <div class="col navbar navbar-expand-lg navbar-dark bg-dark">
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <!-- Marca -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">Marca</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" th:href="@{/marca/lista-marca}">Lista Marca</a></li>
+                                <li><a class="dropdown-item" th:href="@{/marca/alta-marca}">Alta Marca</a></li>
+                                <li><a class="dropdown-item" th:href="@{/marca/marcadetalle}">Marca Categoría</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Categoría -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">Categoría</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                                <li><a class="dropdown-item" th:href="@{/categoria/lista-categoria}">Lista Categoría</a></li>
+                                <li><a class="dropdown-item" th:href="@{/categoria/alta-categoria}">Alta Categoría</a></li>
+                                <li><a class="dropdown-item" th:href="@{/categoria/categoriadetalle}">Detalle Categoría</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Electrónico -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">Electrónico</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                                <li><a class="dropdown-item" th:href="@{/electronico/lista-electronico}">Lista Electrónico</a></li>
+                                <li><a class="dropdown-item" th:href="@{/electronico/alta-electronico}">Alta Electrónico</a></li>
+                                <li><a class="dropdown-item" th:href="@{/electronico/electronicodetalle}">Detalle Electrónico</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Vendedor -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">Vendedor</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
+                                <li><a class="dropdown-item" th:href="@{/vendedor/lista-vendedor}">Lista Vendedor</a></li>
+                                <li><a class="dropdown-item" th:href="@{/vendedor/alta-vendedor}">Alta Vendedor</a></li>
+                                <li><a class="dropdown-item" th:href="@{/vendedor/vendedordetalle}">Detalle Vendedor</a></li>
+
+                            </ul>
+                        </li>
+
+                        <!-- Comprador -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink5" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">Comprador</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink5">
+                                <li><a class="dropdown-item" th:href="@{/comprador/lista-comprador}">Buscar Comprador</a></li>
+                                <li><a class="dropdown-item" th:href="@{/comprador/alta-comprador}">Alta Comprador</a></li>
+                                <li><a class="dropdown-item" th:href="@{/comprador/compradordetalle}">Detalle Comprador</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Proveedor -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink6" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">Proveedor</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink6">
+                                <li><a class="dropdown-item" th:href="@{/proveedor/lista-proveedor}">Lista Proveedor</a></li>
+                                <li><a class="dropdown-item" th:href="@{/proveedor/alta-proveedor}">Alta Proveedor</a></li>
+                                <li><a class="dropdown-item" th:href="@{/proveedor/proveedordetalle}">Detalle Comprador</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-1 navbar bg-dark">
+                <a class="btn btn-outline-primary" th:href="@{/login}">Sesion</a>
+            </div>
+            <div class="col-lg-1 navbar bg-dark">
+                <form id="logout" th:action="@{/logout}" method=post>
+                    <button class="btn btn-outline-primary"
+                            onclick="document.getElementById('logout').submit();" type="submit">Cerrar Sesion</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container mt-5">
+    <h2 th:text="${contenido}">Alta de Categoría</h2>
+
+    <!-- Formulario de Alta Categoría -->
+    <form th:action="@{/categoria/guardar-categoria}" th:object="${categoria}" method="post">
+        <div class="row gx-5">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre de Categoría:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <br />
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Detalle Categoría -->
+    <div th:if="${categoria != null}">
+        <h3>Detalle de Categoría</h3>
+        <p><strong>ID:</strong> <span th:text="${categoria.id}"></span></p>
+        <p><strong>Nombre:</strong> <span th:text="${categoria.nombre}"></span></p>
+    </div>
+
+    <!-- Lista de Categorías -->
+    <h3 th:if="${categorias != null}">Lista de Categorías</h3>
+    <table th:if="${categorias != null}" class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="categoria : ${categorias}">
+            <td th:text="${categoria.id}"></td>
+            <td th:text="${categoria.nombre}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Detalle Marca -->
+    <div th:if="${marca != null}">
+        <h3>Detalle de Marca</h3>
+        <p><strong>ID:</strong> <span th:text="${marca.id}"></span></p>
+        <p><strong>Nombre:</strong> <span th:text="${marca.nombre}"></span></p>
+    </div>
+
+    <!-- Lista de Marcas -->
+    <h3 th:if="${marcas != null}">Lista de Marcas</h3>
+    <table th:if="${marcas != null}" class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="marca : ${marcas}">
+            <td th:text="${marca.id}"></td>
+            <td th:text="${marca.nombre}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Detalle Comprador -->
+    <div th:if="${comprador != null}">
+        <h3>Detalle de Comprador</h3>
+        <p><strong>ID:</strong> <span th:text="${comprador.id}"></span></p>
+        <p><strong>Nombre:</strong> <span th:text="${comprador.nombre}"></span></p>
+    </div>
+
+    <!-- Lista de Compradores -->
+    <h3 th:if="${compradores != null}">Lista de Compradores</h3>
+    <table th:if="${compradores != null}" class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comprador : ${compradores}">
+            <td th:text="${comprador.id}"></td>
+            <td th:text="${comprador.nombre}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Detalle Electrónico -->
+    <div th:if="${electronico != null}">
+        <h3>Detalle de Electrónico</h3>
+        <p><strong>ID:</strong> <span th:text="${electronico.id}"></span></p>
+        <p><strong>Nombre:</strong> <span th:text="${electronico.nombre}"></span></p>
+        <p><strong>Categoría:</strong> <span th:text="${electronico.categoria.nombre}"></span></p>
+        <p><strong>Marca:</strong> <span th:text="${electronico.marca.nombre}"></span></p>
+    </div>
+
+    <!-- Lista de Electrónicos -->
+    <h3 th:if="${electronicos != null}">Lista de Electrónicos</h3>
+    <table th:if="${electronicos != null}" class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Marca</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="electronico : ${electronicos}">
+            <td th:text="${electronico.id}"></td>
+            <td th:text="${electronico.nombre}"></td>
+            <td th:text="${electronico.categoria.nombre}"></td>
+            <td th:text="${electronico.marca.nombre}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Detalle Vendedor -->
+    <div th:if="${vendedor != null}">
+        <h3>Detalle de Vendedor</h3>
+        <p><strong>ID:</strong> <span th:text="${vendedor.id}"></span></p>
+        <p><strong>Nombre:</strong> <span th:text="${vendedor.nombre}"></span></p>
+    </div>
+
+    <!-- Lista de Vendedores -->
+    <h3 th:if="${vendedores != null}">Lista de Vendedores</h3>
+    <table th:if="${vendedores != null}" class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vendedor : ${vendedores}">
+            <td th:text="${vendedor.id}"></td>
+            <td th:text="${vendedor.nombre}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Detalle Proveedor -->
+    <div th:if="${proveedor != null}">
+        <h3>Detalle de Proveedor</h3>
+        <p><strong>ID:</strong> <span th:text="${proveedor.id}"></span></p>
+        <p><strong>Nombre:</strong> <span th:text="${proveedor.nombre}"></span></p>
+    </div>
+
+    <!-- Lista de Proveedores -->
+    <h3 th:if="${proveedores != null}">Lista de Proveedores</h3>
+    <table th:if="${proveedores != null}" class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="proveedor : ${proveedores}">
+            <td th:text="${proveedor.id}"></td>
+            <td th:text="${proveedor.nombre}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<footer th:fragment="footer">
+    <div class="container text-center">
+        <br/><img th:src="@{/imagen/Terry.jpg}" height="386" width="686"/>
+        <p>Prueba del avance de proyecto</p>
+    </div>
+</footer>
+
+<script th:src="@{/bootstrap/js/jquery-3.6.3.js}"></script>
+<script th:src="@{/bootstrap/js/jquery-ui.min.js}"></script>
+<script th:src="@{/bootstrap/js/popper.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

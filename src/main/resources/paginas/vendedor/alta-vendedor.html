@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta de Vendedor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 th:text="${contenido}">Alta de Vendedor</h2>
+
+    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+        Verifique los siguientes errores
+        <ul>
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <form th:action="@{/vendedor/salvar-vendedor}" th:object="${vendedor}" method="post">
+        <div class="row gx-5">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" class="form-control" id="apellidos" name="apellidos" th:field="*{apellidos}" required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="edad">Edad:</label>
+                    <input type="number" class="form-control" id="edad" name="edad" th:field="*{edad}" required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="genero">Género:</label>
+                    <select class="form-control" id="genero" name="genero" th:field="*{genero}" required>
+                        <option value="" disabled selected>Seleccione un Género</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <br />
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

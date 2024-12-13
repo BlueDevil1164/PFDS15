@@ -1,7 +1,7 @@
 package mx.unam.dgtic.servicio.categoria;
 
-import mx.unam.dgtic.dto.CategoriaDTO;
-import mx.unam.dgtic.exception.CategoriaNoExisteExepcion;
+import mx.unam.dgtic.auth.dto.CategoriaDTO;
+import mx.unam.dgtic.auth.exception.CategoriaNoExisteExepcion;
 
 import java.util.List;
 import java.util.Optional;

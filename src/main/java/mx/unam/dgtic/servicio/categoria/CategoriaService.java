@@ -1,7 +1,7 @@
 package mx.unam.dgtic.servicio.categoria;
 
-import mx.unam.dgtic.model.Categoria;
-import mx.unam.dgtic.repository.CategoriaRepository;
+import mx.unam.dgtic.auth.model.Categoria;
+import mx.unam.dgtic.auth.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

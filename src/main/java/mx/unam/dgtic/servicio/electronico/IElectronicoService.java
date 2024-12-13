@@ -1,6 +1,6 @@
 package mx.unam.dgtic.servicio.electronico;
 
-import mx.unam.dgtic.model.Electronico;
+import mx.unam.dgtic.auth.model.Electronico;
 
 import java.util.List;
 import java.util.Optional;

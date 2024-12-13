@@ -1,10 +1,9 @@
 package mx.unam.dgtic.servicio.marca;
 
-import mx.unam.dgtic.dto.MarcaDTO;
-import mx.unam.dgtic.exception.MarcaNoExisteExepcion;
-import mx.unam.dgtic.model.Electronico;
-import mx.unam.dgtic.model.Marca;
-import mx.unam.dgtic.repository.MarcaRepository;
+import mx.unam.dgtic.auth.dto.MarcaDTO;
+import mx.unam.dgtic.auth.exception.MarcaNoExisteExepcion;
+import mx.unam.dgtic.auth.model.Marca;
+import mx.unam.dgtic.auth.repository.MarcaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

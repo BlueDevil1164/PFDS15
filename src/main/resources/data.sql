@@ -63,5 +63,30 @@ INSERT INTO Electronicos_Proveedores (matricula, id_proveedor, anio) VALUES
 ('E0000009', 9, 2024),
 ('E0000010', 10, 2024);
 
+-- Insertar 10 registros en la tabla Compradores
+INSERT INTO Compradores (nombre, apellidos, edad, genero) VALUES
+('Valerie', 'Noyola', 28, 'Femenino'),
+('Carlos', 'Gómez López', 28, 'Masculino'),
+('Ana', 'Martínez Pérez', 34, 'Femenino'),
+('Luis', 'Hernández Sánchez', 21, 'Masculino'),
+('María', 'Jiménez Torres', 29, 'Femenino'),
+('Fernando', 'Ruiz Díaz', 45, 'Masculino'),
+('Sofía', 'Ramírez Ortega', 31, 'Femenino'),
+('Diego', 'Vega Morales', 22, 'Masculino'),
+('Paula', 'Navarro Castillo', 27, 'Femenino'),
+('Jorge', 'Cruz Gómez', 37, 'Masculino'),
+('Laura', 'Mendoza León', 30, 'Femenino');
 
-
+-- Insertar 10 registros en la tabla Vendedores
+INSERT INTO Vendedores (nombre, apellidos, edad, genero) VALUES
+('Valerie', 'Noyola', 28, 'Femenino'),
+('Carlos', 'Gómez López', 28, 'Masculino'),
+('Ana', 'Martínez Pérez', 34, 'Femenino'),
+('Luis', 'Hernández Sánchez', 21, 'Masculino'),
+('María', 'Jiménez Torres', 29, 'Femenino'),
+('Fernando', 'Ruiz Díaz', 45, 'Masculino'),
+('Sofía', 'Ramírez Ortega', 31, 'Femenino'),
+('Diego', 'Vega Morales', 22, 'Masculino'),
+('Paula', 'Navarro Castillo', 27, 'Femenino'),
+('Jorge', 'Cruz Gómez', 37, 'Masculino'),
+('Laura', 'Mendoza León', 30, 'Femenino');

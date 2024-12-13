@@ -1,6 +1,6 @@
 package mx.unam.dgtic.servicio.proveedor;
 
-import mx.unam.dgtic.model.Proveedor;
+import mx.unam.dgtic.auth.model.Proveedor;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,10 +1,9 @@
 package mx.unam.dgtic.servicio.categoria;
 
-import mx.unam.dgtic.dto.CategoriaDTO;
-import mx.unam.dgtic.exception.CategoriaNoExisteExepcion;
-import mx.unam.dgtic.model.Categoria;
-import mx.unam.dgtic.model.Electronico;
-import mx.unam.dgtic.repository.CategoriaRepository;
+import mx.unam.dgtic.auth.dto.CategoriaDTO;
+import mx.unam.dgtic.auth.exception.CategoriaNoExisteExepcion;
+import mx.unam.dgtic.auth.model.Categoria;
+import mx.unam.dgtic.auth.repository.CategoriaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

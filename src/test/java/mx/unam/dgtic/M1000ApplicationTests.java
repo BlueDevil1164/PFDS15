@@ -1,14 +1,10 @@
 package mx.unam.dgtic;
 
-import mx.unam.dgtic.model.Electronico;
-import mx.unam.dgtic.repository.ElectronicoRepository;
+import mx.unam.dgtic.auth.model.Electronico;
+import mx.unam.dgtic.auth.repository.ElectronicoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 

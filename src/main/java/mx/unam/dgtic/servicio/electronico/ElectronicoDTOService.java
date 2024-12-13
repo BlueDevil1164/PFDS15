@@ -1,11 +1,11 @@
 package mx.unam.dgtic.servicio.electronico;
 
-import mx.unam.dgtic.dto.ElectronicoDTO;
-import mx.unam.dgtic.exception.CategoriaNoExisteExepcion;
-import mx.unam.dgtic.model.Categoria;
-import mx.unam.dgtic.model.Electronico;
-import mx.unam.dgtic.repository.CategoriaRepository;
-import mx.unam.dgtic.repository.ElectronicoRepository;
+import mx.unam.dgtic.auth.dto.ElectronicoDTO;
+import mx.unam.dgtic.auth.exception.CategoriaNoExisteExepcion;
+import mx.unam.dgtic.auth.model.Categoria;
+import mx.unam.dgtic.auth.model.Electronico;
+import mx.unam.dgtic.auth.repository.CategoriaRepository;
+import mx.unam.dgtic.auth.repository.ElectronicoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

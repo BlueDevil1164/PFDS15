@@ -1,7 +1,7 @@
 package mx.unam.dgtic.servicio.proveedor;
 
-import mx.unam.dgtic.model.Proveedor;
-import mx.unam.dgtic.repository.ProveedorRepository;
+import mx.unam.dgtic.auth.model.Proveedor;
+import mx.unam.dgtic.auth.repository.ProveedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

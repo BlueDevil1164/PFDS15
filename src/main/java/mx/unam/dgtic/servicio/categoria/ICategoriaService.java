@@ -1,6 +1,6 @@
 package mx.unam.dgtic.servicio.categoria;
 
-import mx.unam.dgtic.model.Categoria;
+import mx.unam.dgtic.auth.model.Categoria;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,10 +1,9 @@
 package mx.unam.dgtic.servicio.proveedor;
 
-import mx.unam.dgtic.dto.ProveedorDTO;
-import mx.unam.dgtic.exception.ProveedorNoExisteExepcion;
-import mx.unam.dgtic.model.Electronico;
-import mx.unam.dgtic.model.Proveedor;
-import mx.unam.dgtic.repository.ProveedorRepository;
+import mx.unam.dgtic.auth.dto.ProveedorDTO;
+import mx.unam.dgtic.auth.exception.ProveedorNoExisteExepcion;
+import mx.unam.dgtic.auth.model.Proveedor;
+import mx.unam.dgtic.auth.repository.ProveedorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

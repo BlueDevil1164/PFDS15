@@ -1,6 +1,6 @@
 package mx.unam.dgtic.servicio.marca;
 
-import mx.unam.dgtic.model.Marca;
+import mx.unam.dgtic.auth.model.Marca;
 
 import java.util.List;
 import java.util.Optional;

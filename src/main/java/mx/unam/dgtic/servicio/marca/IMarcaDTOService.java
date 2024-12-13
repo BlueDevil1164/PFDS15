@@ -1,7 +1,7 @@
 package mx.unam.dgtic.servicio.marca;
 
-import mx.unam.dgtic.dto.MarcaDTO;
-import mx.unam.dgtic.exception.MarcaNoExisteExepcion;
+import mx.unam.dgtic.auth.dto.MarcaDTO;
+import mx.unam.dgtic.auth.exception.MarcaNoExisteExepcion;
 
 import java.util.List;
 import java.util.Optional;

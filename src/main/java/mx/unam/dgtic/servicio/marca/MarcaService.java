@@ -1,7 +1,7 @@
 package mx.unam.dgtic.servicio.marca;
 
-import mx.unam.dgtic.model.Marca;
-import mx.unam.dgtic.repository.MarcaRepository;
+import mx.unam.dgtic.auth.model.Marca;
+import mx.unam.dgtic.auth.repository.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

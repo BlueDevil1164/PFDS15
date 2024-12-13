@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<head th:replace="~{plantillas/plantilla :: head}"></head>
+
+<body>
+<header th:replace="~{plantillas/plantilla :: header}"></header>
+<main class="container text-center opacity-75 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <div class="container py-4 text-center">
+        <div class="card by-danger">
+            <div class="card-body">
+                <h4 class="card-title">
+                    El recurso que solicitas no esta disponible ó ocurrió un error interno
+                </h4>
+                <a class="btn btn-outline-primary" th:href="@{/}">Inicio</a> </li>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{plantillas/plantilla :: footer}"></footer>
+</body>
+</html>

@@ -1,7 +1,7 @@
 package mx.unam.dgtic.servicio.electronico;
 
-import mx.unam.dgtic.model.Electronico;
-import mx.unam.dgtic.repository.ElectronicoRepository;
+import mx.unam.dgtic.auth.model.Electronico;
+import mx.unam.dgtic.auth.repository.ElectronicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

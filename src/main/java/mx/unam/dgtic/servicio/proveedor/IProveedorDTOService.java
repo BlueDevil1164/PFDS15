@@ -1,7 +1,7 @@
 package mx.unam.dgtic.servicio.proveedor;
 
-import mx.unam.dgtic.dto.ProveedorDTO;
-import mx.unam.dgtic.exception.ProveedorNoExisteExepcion;
+import mx.unam.dgtic.auth.dto.ProveedorDTO;
+import mx.unam.dgtic.auth.exception.ProveedorNoExisteExepcion;
 
 import java.util.List;
 import java.util.Optional;

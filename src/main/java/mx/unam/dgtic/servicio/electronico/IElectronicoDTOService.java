@@ -1,7 +1,7 @@
 package mx.unam.dgtic.servicio.electronico;
 
-import mx.unam.dgtic.dto.ElectronicoDTO;
-import mx.unam.dgtic.exception.CategoriaNoExisteExepcion;
+import mx.unam.dgtic.auth.dto.ElectronicoDTO;
+import mx.unam.dgtic.auth.exception.CategoriaNoExisteExepcion;
 
 import java.text.ParseException;
 import java.util.List;
