@@ -1,7 +1,6 @@
 package mx.unam.dgtic.security.jwt;
 
 import edu.unam.springsecurity.auth.dto.UserInfoDTO;
-import mx.unam.dgtic.
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +16,7 @@ import java.util.stream.Collectors;
 @Component
 @Slf4j
 public class JWTTokenProvider {
+
     private String secret;
     private int jwtExpirationInMs;
     private SecretKey key;
@@ -24,6 +24,7 @@ public class JWTTokenProvider {
     @Value("${jwt.secret}")
     public void setSecret(String secret) {
         this.secret = secret;
+        this.key = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
     @Value("${jwt.expirationDateInMs}")
@@ -31,82 +32,81 @@ public class JWTTokenProvider {
         this.jwtExpirationInMs = jwtExpirationInMs;
     }
 
+    /**
+     * Generate a JWT token for the authenticated user.
+     */
     public String generateJwtToken(Authentication authentication, UserInfoDTO user) {
-        Claims claims = Jwts.claims().setSubject("UNAM").setIssuer(user.getUseEmail())
+        Claims claims = Jwts.claims()
+                .setSubject("UNAM")
+                .setIssuer(user.getUseEmail())
                 .setAudience("JAVA");
+
         claims.put("principal", authentication.getPrincipal());
-        claims.put("auth", authentication.getAuthorities().stream().map(s -> new SimpleGrantedAuthority(s.getAuthority()))
+        claims.put("auth", authentication.getAuthorities().stream()
+                .map(s -> new SimpleGrantedAuthority(s.getAuthority()))
                 .collect(Collectors.toList()));
         claims.put("issid", user.getUseId());
         claims.put("issname", user.getUseFirstName() + " " + user.getUseLastName());
-        key = Keys.hmacShaKeyFor(secret.getBytes());
+
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMs * 1000L))
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMs))
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
     }
 
+    /**
+     * Extract claims from the token.
+     */
     public Claims getClaims(String token) {
-        key = Keys.hmacShaKeyFor(secret.getBytes());
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
     }
 
+    /**
+     * Extract specific claims.
+     */
     public String getFullName(String token) {
-        key = Keys.hmacShaKeyFor(secret.getBytes());
-        var body = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
-        return (String) body.get("issname");
+        return (String) getClaims(token).get("issname");
     }
 
     public String getSubject(String token) {
-        key = Keys.hmacShaKeyFor(secret.getBytes());
-        Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
-        return claims.getSubject();
+        return getClaims(token).getSubject();
     }
 
     public String getIssuer(String token) {
-        key = Keys.hmacShaKeyFor(secret.getBytes());
-        Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
-        return claims.getIssuer();
+        return getClaims(token).getIssuer();
     }
 
     public String getAudience(String token) {
-        key = Keys.hmacShaKeyFor(secret.getBytes());
-        Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
-        return claims.getAudience();
+        return getClaims(token).getAudience();
     }
 
     public Date getTokenExpiryFromJWT(String token) {
-        key = Keys.hmacShaKeyFor(secret.getBytes());
-        Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
-        return claims.getExpiration();
+        return getClaims(token).getExpiration();
     }
 
     public Date getTokenIatFromJWT(String token) {
-        key = Keys.hmacShaKeyFor(secret.getBytes());
-        Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
-        return claims.getIssuedAt();
+        return getClaims(token).getIssuedAt();
     }
 
+    /**
+     * Validate a JWT token.
+     */
     public boolean validateJwtToken(String authToken) {
         try {
-            key = Keys.hmacShaKeyFor(secret.getBytes());
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(authToken);
             return true;
-        } catch (MalformedJwtException exception) {
+        } catch (JwtException exception) {
             log.error("Invalid JWT token -> Message: {}", exception.getMessage());
-        } catch (ExpiredJwtException exception) {
-            log.error("Expired JWT token -> Message: {}", exception.getMessage());
-        } catch (UnsupportedJwtException exception) {
-            log.error("Unsupported JWT token -> Message: {}", exception.getMessage());
-        } catch (IllegalArgumentException exception) {
-            log.error("JWT claims string is empty -> Message: {}", exception.getMessage());
         }
         return false;
     }
 
+    /**
+     * Get the configured expiration duration for the token.
+     */
     public long getExpiryDuration() {
-        return jwtExpirationInMs * 1000L;
+        return jwtExpirationInMs;
     }
 }
