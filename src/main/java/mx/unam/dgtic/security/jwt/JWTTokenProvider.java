@@ -1,9 +1,11 @@
 package mx.unam.dgtic.security.jwt;
 
-import edu.unam.springsecurity.auth.dto.UserInfoDTO;
+
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+
+import mx.unam.dgtic.auth.dto.UsuarioInfoDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,18 +37,18 @@ public class JWTTokenProvider {
     /**
      * Generate a JWT token for the authenticated user.
      */
-    public String generateJwtToken(Authentication authentication, UserInfoDTO user) {
+    public String generateJwtToken(Authentication authentication, UsuarioInfoDTO user) {
         Claims claims = Jwts.claims()
                 .setSubject("UNAM")
-                .setIssuer(user.getUseEmail())
+                .setIssuer(user.getUsuEmail())
                 .setAudience("JAVA");
 
         claims.put("principal", authentication.getPrincipal());
         claims.put("auth", authentication.getAuthorities().stream()
                 .map(s -> new SimpleGrantedAuthority(s.getAuthority()))
                 .collect(Collectors.toList()));
-        claims.put("issid", user.getUseId());
-        claims.put("issname", user.getUseFirstName() + " " + user.getUseLastName());
+        claims.put("issid", user.getUsuId());
+        claims.put("issname", user.getUsuFirstName() + " " + user.getUsuLastName());
 
         return Jwts.builder()
                 .setClaims(claims)

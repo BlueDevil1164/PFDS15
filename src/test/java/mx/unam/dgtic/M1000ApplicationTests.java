@@ -1,7 +1,7 @@
 package mx.unam.dgtic;
 
-import mx.unam.dgtic.auth.model.Electronico;
-import mx.unam.dgtic.auth.repository.ElectronicoRepository;
+import mx.unam.dgtic.system.model.Electronico;
+import mx.unam.dgtic.system.repository.ElectronicoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
